@@ -1,0 +1,24 @@
+{
+  "name": "cicd-gen",
+  "version": "1.0.0",
+  "description": "Auto-detect project type and generate GitHub Actions CI/CD workflow with smart caching, deployment targets, and security best practices.",
+  "author": "showkkd133",
+  "license": "MIT",
+  "homepage": "https://github.com/showkkd133/cicd-gen-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/showkkd133/cicd-gen-skill.git"
+  },
+  "keywords": [
+    "github-actions",
+    "cicd",
+    "devops",
+    "pipeline",
+    "deployment",
+    "automation"
+  ],
+  "categories": [
+    "developer-tools",
+    "devops"
+  ]
+}

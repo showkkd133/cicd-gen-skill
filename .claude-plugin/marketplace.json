@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    {
+      "name": "cicd-gen",
+      "version": "1.0.0",
+      "path": ".",
+      "description": "Auto-detect project type and generate GitHub Actions CI/CD workflow"
+    }
+  ]
+}
