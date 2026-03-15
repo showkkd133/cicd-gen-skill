@@ -1,3 +1,15 @@
+---
+name: cicd-gen
+description: 自动检测项目技术栈，生成 GitHub Actions workflow 及其他 CI/CD 配置
+triggers:
+  - "生成 ci"
+  - "配置流水线"
+  - "generate ci/cd"
+  - "github actions"
+  - "setup workflow"
+  - "ci cd pipeline"
+---
+
 # Skill: CI/CD Pipeline 智能生成
 
 自动检测项目类型和技术栈，生成 GitHub Actions workflow 及其他 CI/CD 配置。
@@ -45,10 +57,10 @@ grep -E '"(next|nuxt|remix|astro|vite|gatsby)":\s*"' package.json 2>/dev/null
 grep -rE '"(fastapi|flask|django|streamlit)"' requirements.txt pyproject.toml setup.py 2>/dev/null
 
 # Go framework detection
-grep -E '^\s+"(github.com/gin-gonic/gin|github.com/labstack/echo|github.com/gofiber/fiber|github.com/go-chi/chi)' go.mod 2>/dev/null
+grep -E '^\s*(github\.com/gin-gonic/gin|github\.com/labstack/echo|github\.com/gofiber/fiber|github\.com/go-chi/chi)' go.mod 2>/dev/null
 
 # Rust framework detection
-grep -E '"(actix-web|axum|rocket|warp)"' Cargo.toml 2>/dev/null
+grep -E '(actix-web|axum|rocket|warp)\s*=' Cargo.toml 2>/dev/null
 
 # Docker detection
 [ -f Dockerfile ] && echo "DOCKER_PROJECT"
@@ -407,9 +419,10 @@ jobs:
       - uses: oven-sh/setup-bun@735343b667d82a9b6e7e29e1a5a61cce62063358 # v2.0.1 (pinned SHA)
 
       - name: Deploy to Vercel
-        run: |
-          bun add -g vercel
-          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: bunx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
 ```
 
 > ⚠️ Action 版本需定期更新。建议：
@@ -490,7 +503,8 @@ jobs:
     if: >-
       github.event_name == 'push' &&
       startsWith(github.ref, 'refs/tags/v') &&
-      github.repository == '${{ github.repository }}'
+      # TODO: Replace with your actual repository name
+      github.repository == 'OWNER/REPO_NAME'
     permissions:
       contents: read
       id-token: write

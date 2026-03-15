@@ -9,6 +9,14 @@
     "type": "git",
     "url": "https://github.com/showkkd133/cicd-gen-skill.git"
   },
+  "triggers": [
+    "生成 ci",
+    "配置流水线",
+    "generate ci/cd",
+    "github actions",
+    "setup workflow",
+    "ci cd pipeline"
+  ],
   "keywords": [
     "github-actions",
     "cicd",
